@@ -33,7 +33,7 @@ jobs:
           git config user.email action@github.com
           git config user.name "GitHub Action"
           shopt -s dotglob
-          rm -rf !(".git")
+          rm -rf !(.git) ./*
           cp -R ../docs/.vitepress/dist/* .
           touch .nojekyll
           git add --all
