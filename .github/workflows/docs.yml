@@ -32,8 +32,9 @@ jobs:
           cd ${TARGET_DIR}
           git config user.email action@github.com
           git config user.name "GitHub Action"
-          rm -rf ./*
+          rm -rf .* *
           cp -R ../docs/.vitepress/dist/* .
+          touch .nojekyll
           git add --all
           DOCS_VERSION="$(xmllint --xpath "/Project/PropertyGroup/Version/text()" ../src/Alba/Alba.csproj)"
           git commit -a -m "Documentation Update for ${DOCS_VERSION}" --allow-empty
