@@ -23,8 +23,8 @@ jobs:
         env:
           TARGET_BRANCH: gh-pages-test
           TARGET_DIR: doc-target
-          BUILD_VERSION: 5.0.0
         run: |
+          sudo apt-get install libxml2
           dotnet tool install -g MarkdownSnippets.Tool
           npm install
           npm run docs-build
@@ -35,7 +35,8 @@ jobs:
           rm -rf ./*
           cp -R ../docs/.vitepress/dist/ .
           git add --all
-          git commit -a -m "Documentation Update for ${BUILD_VERSION}" --allow-empty
+          docs_version = xmllint --xpath "/Project/PropertyGroup/Version/text()" src/Alba/Alba.csproj
+          git commit -a -m "Documentation Update for ${docs_version}" --allow-empty
           git push origin ${TARGET_BRANCH}
 
       # - name: Generate Algolia DocSearch index
