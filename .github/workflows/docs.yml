@@ -23,33 +23,20 @@ jobs:
         env:
           TARGET_BRANCH: gh-pages-test
           TARGET_DIR: doc-target
-<<<<<<< Updated upstream
-=======
           BUILD_VERSION: 5.0.0
->>>>>>> Stashed changes
         run: |
           dotnet tool install -g MarkdownSnippets.Tool
           npm install
           npm run docs-build
-<<<<<<< Updated upstream
-          git clone -b ${{env.TARGET_BRANCH}} https://${{env.GITHUB_ACTOR}}:${{secrets.GITHUB_TOKEN}}@github.com/${{env.GITHUB_REPOSITORY}}.git ${{env.TARGET_DIR}} 
-          cd ${{env.TARGET_DIR}}
-=======
           git clone -b ${TARGET_BRANCH} https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git ${TARGET_DIR} 
           cd ${TARGET_DIR}
->>>>>>> Stashed changes
           git config user.email action@github.com
           git config user.name "GitHub Action"
           rm -rf ./*
           cp -R ../docs/.vitepress/dist/ .
           git add -all
-<<<<<<< Updated upstream
-          git commit -a -m "Documentation Update for {env.BUILD_VERSION}" --allow-empty
-          git push origin ${{env.TARGET_BRANCH}}
-=======
           git commit -a -m "Documentation Update for ${BUILD_VERSION}" --allow-empty
           git push origin ${TARGET_BRANCH}
->>>>>>> Stashed changes
 
       # - name: Generate Algolia DocSearch index
       #   uses: darrenjennings/algolia-docsearch-action@master
