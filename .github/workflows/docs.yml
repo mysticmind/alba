@@ -27,15 +27,15 @@ jobs:
           dotnet tool install -g MarkdownSnippets.Tool
           npm install
           npm run docs-build
-          git clone -b ${{TARGET_BRANCH}} https://${{secrets.GITHUB_ACTOR}}:${{secrets.GITHUB_TOKEN}}@github.com/${{GITHUB_REPOSITORY}}.git ${{TARGET_DIR}} 
-          cd ${{TARGET_DIR}}
+          git clone -b ${{env.TARGET_BRANCH}} https://${{secrets.GITHUB_ACTOR}}:${{secrets.GITHUB_TOKEN}}@github.com/${{GITHUB_REPOSITORY}}.git ${{env.TARGET_DIR}} 
+          cd ${{env.TARGET_DIR}}
           git config user.email action@github.com
           git config user.name "GitHub Action"
           rm -rf ./*
           cp -R ../docs/.vitepress/dist/ .
           git add -all
-          git commit -a -m "Documentation Update for {BUILD_VERSION}" --allow-empty
-          git push origin ${{TARGET_BRANCH}}
+          git commit -a -m "Documentation Update for {env.BUILD_VERSION}" --allow-empty
+          git push origin ${{env.TARGET_BRANCH}}
 
       # - name: Generate Algolia DocSearch index
       #   uses: darrenjennings/algolia-docsearch-action@master
