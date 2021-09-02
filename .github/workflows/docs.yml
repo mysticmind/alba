@@ -34,7 +34,7 @@ jobs:
           git config user.name "GitHub Action"
           shopt -s extglob
           shopt -s dotglob
-          rm -rf !(.git) 2> /dev/null
+          rm -rf !(.git) 2> /dev/null || true
           cp -R ../docs/.vitepress/dist/* .
           touch .nojekyll
           git add --all
