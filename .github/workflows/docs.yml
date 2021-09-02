@@ -34,7 +34,7 @@ jobs:
           git config user.name "GitHub Action"
           rm -rf ./*
           cp -R ../docs/.vitepress/dist/ .
-          git add -all
+          git add --all
           git commit -a -m "Documentation Update for ${BUILD_VERSION}" --allow-empty
           git push origin ${TARGET_BRANCH}
 
