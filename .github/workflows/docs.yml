@@ -35,8 +35,8 @@ jobs:
           rm -rf ./*
           cp -R ../docs/.vitepress/dist/ .
           git add --all
-          docs_version = xmllint --xpath "/Project/PropertyGroup/Version/text()" src/Alba/Alba.csproj
-          git commit -a -m "Documentation Update for ${docs_version}" --allow-empty
+          DOCS_VERSION=$(xmllint --xpath "/Project/PropertyGroup/Version/text()" src/Alba/Alba.csproj)
+          git commit -a -m "Documentation Update for ${DOCS_VERSION}" --allow-empty
           git push origin ${TARGET_BRANCH}
 
       # - name: Generate Algolia DocSearch index
