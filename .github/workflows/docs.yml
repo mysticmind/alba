@@ -27,7 +27,7 @@ jobs:
           dotnet tool install -g MarkdownSnippets.Tool
           npm install
           npm run docs-build
-          git clone -b ${{env.TARGET_BRANCH}} https://${{secrets.GITHUB_ACTOR}}:${{secrets.GITHUB_TOKEN}}@github.com/${{GITHUB_REPOSITORY}}.git ${{env.TARGET_DIR}} 
+          git clone -b ${{env.TARGET_BRANCH}} https://${{env.GITHUB_ACTOR}}:${{secrets.GITHUB_TOKEN}}@github.com/${{env.GITHUB_REPOSITORY}}.git ${{env.TARGET_DIR}} 
           cd ${{env.TARGET_DIR}}
           git config user.email action@github.com
           git config user.name "GitHub Action"
