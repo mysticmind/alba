@@ -32,7 +32,8 @@ jobs:
           cd ${TARGET_DIR}
           git config user.email action@github.com
           git config user.name "GitHub Action"
-          s -A1 | xargs rm -rf
+          shopt -s dotglob
+          rm -rf *
           cp -R ../docs/.vitepress/dist/* .
           touch .nojekyll
           git add --all
