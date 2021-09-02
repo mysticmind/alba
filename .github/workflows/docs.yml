@@ -32,7 +32,7 @@ jobs:
           cd ${TARGET_DIR}
           git config user.email action@github.com
           git config user.name "GitHub Action"
-          find . -name . -o -prune -exec rm -rf -- {} +
+          s -A1 | xargs rm -rf
           cp -R ../docs/.vitepress/dist/* .
           touch .nojekyll
           git add --all
